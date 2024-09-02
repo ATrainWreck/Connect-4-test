@@ -5,7 +5,7 @@ let currentPlayer = 'red';
 
 function createBoard() {
     const gameBoard = document.getElementById('game-board');
-    // Clear the existing board if it exists
+    // Clear the existing board cells
     gameBoard.innerHTML = '';
     
     for (let row = 0; row < rows; row++) {
@@ -30,7 +30,7 @@ function handleCellClick(row, col) {
                 setTimeout(() => {
                     alert(`${currentPlayer} wins!`);
                     resetBoard();
-                }, 100); // Short delay before resetting to show the winning alert
+                }, 100); // Short delay to ensure the alert shows before resetting
                 return;
             }
             currentPlayer = currentPlayer === 'red' ? 'yellow' : 'red';
@@ -44,9 +44,9 @@ function updateBoard() {
     cells.forEach(cell => {
         const row = cell.dataset.row;
         const col = cell.dataset.col;
-        cell.className = 'cell';
+        cell.className = 'cell'; // Reset the class
         if (board[row][col]) {
-            cell.classList.add(board[row][col]);
+            cell.classList.add(board[row][col]); // Add the player's class
         }
     });
 }
@@ -92,8 +92,8 @@ function resetBoard() {
             board[r][c] = null;
         }
     }
-    // Clear the visual board
-    createBoard(); // This will recreate the board from scratch
+    // Recreate the board from scratch
+    createBoard();
 }
 
 createBoard();

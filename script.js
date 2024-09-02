@@ -25,6 +25,7 @@ function handleCellClick(row, col) {
             updateBoard();
             if (checkWin(r, col)) {
                 alert(`${currentPlayer} wins!`);
+                resetBoard();
                 return;
             }
             currentPlayer = currentPlayer === 'red' ? 'yellow' : 'red';
@@ -46,7 +47,6 @@ function updateBoard() {
 }
 
 function checkWin(row, col) {
-    // Check horizontal, vertical, and diagonal for a win
     const directions = [
         { r: 1, c: 0 }, // Vertical
         { r: 0, c: 1 }, // Horizontal
@@ -74,11 +74,21 @@ function checkWin(row, col) {
             }
         }
         if (count >= 4) {
-            createBoard();
             return true;
         }
     }
     return false;
+}
+
+function resetBoard() {
+    // Clear the board array
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            board[r][c] = null;
+        }
+    }
+    // Clear the visual board
+    updateBoard();
 }
 
 createBoard();

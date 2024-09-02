@@ -74,6 +74,7 @@ function checkWin(row, col) {
             }
         }
         if (count >= 4) {
+            createBoard();
             return true;
         }
     }

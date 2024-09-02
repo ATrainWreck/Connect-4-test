@@ -1,9 +1,20 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+    background-color: #f0f0f0; /* Light background color */
+}
+
 #game-board {
     display: grid;
     grid-template-columns: repeat(7, 50px); /* 7 columns */
     grid-template-rows: repeat(6, 50px); /* 6 rows */
     gap: 5px;
-    justify-content: center;
+    background-color: #333; /* Dark background color for the board */
+    padding: 10px;
+    border-radius: 10px; /* Rounded corners */
 }
 
 .cell {
@@ -14,6 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer; /* Change cursor to pointer on hover */
 }
 
 .cell.red {

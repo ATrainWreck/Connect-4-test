@@ -2,6 +2,7 @@ const rows = 6;
 const columns = 7;
 const board = Array.from({ length: rows }, () => Array(columns).fill(null));
 let currentPlayer = 'red';
+const resetButton = document.getElementById('reset-button'); // Reference to the reset button
 
 function createBoard() {
     const gameBoard = document.getElementById('game-board');
@@ -18,6 +19,8 @@ function createBoard() {
             gameBoard.appendChild(cell);
         }
     }
+    
+    resetButton.style.display = 'none'; // Hide the reset button initially
 }
 
 function handleCellClick(row, col) {
@@ -29,7 +32,7 @@ function handleCellClick(row, col) {
             if (checkWin(r, col)) {
                 setTimeout(() => {
                     alert(`${currentPlayer} wins!`);
-                    resetBoard();
+                    showResetButton(); // Show the reset button when the game is over
                 }, 100); // Short delay to ensure the alert shows before resetting
                 return;
             }
@@ -60,29 +63,42 @@ function checkWin(row, col) {
     ];
     for (const { r: rDir, c: cDir } of directions) {
         let count = 1;
+        let winningCells = [[row, col]]; // Store the winning cells
+        // Check in one direction
         for (let i = 1; i < 4; i++) {
             const newRow = row + rDir * i;
             const newCol = col + cDir * i;
             if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < columns && board[newRow][newCol] === currentPlayer) {
                 count++;
+                winningCells.push([newRow, newCol]); // Store this cell
             } else {
                 break;
             }
         }
+        // Check in the opposite direction
         for (let i = 1; i < 4; i++) {
             const newRow = row - rDir * i;
             const newCol = col - cDir * i;
             if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < columns && board[newRow][newCol] === currentPlayer) {
                 count++;
+                winningCells.push([newRow, newCol]); // Store this cell
             } else {
                 break;
             }
         }
         if (count >= 4) {
+            highlightWinningCells(winningCells);
             return true;
         }
     }
     return false;
+}
+
+function highlightWinningCells(cells) {
+    cells.forEach(([row, col]) => {
+        const cell = document.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+        cell.classList.add('win');
+    });
 }
 
 function resetBoard() {
@@ -92,8 +108,16 @@ function resetBoard() {
             board[r][c] = null;
         }
     }
-    // Recreate the board from scratch
-    createBoard();
+    currentPlayer = 'red'; // Reset to the first player
+    createBoard(); // Recreate the board
 }
 
+function showResetButton() {
+    resetButton.style.display = 'block'; // Show the reset button
+}
+
+// Attach an event listener to the reset button
+resetButton.addEventListener('click', resetBoard);
+
+// Create the game board when the page loads
 createBoard();

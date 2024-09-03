@@ -26,6 +26,11 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+.cell:hover {
+    background-color: #cccccc; /* Light gray on hover */
 }
 
 .cell.red {
@@ -34,4 +39,21 @@ body {
 
 .cell.yellow {
     background-color: yellow;
+}
+
+.cell.win {
+    border: 3px solid #000; /* Highlight winning cells */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    #game-board {
+        grid-template-columns: repeat(7, 35px); /* Smaller cells on mobile */
+        grid-template-rows: repeat(6, 35px);
+        gap: 4px;
+    }
+    .cell {
+        width: 35px;
+        height: 35px;
+    }
 }

@@ -4,7 +4,7 @@ body {
     align-items: center;
     height: 100vh; /* Full viewport height */
     margin: 0;
-    background-color: #f0f0f0; /* Light background color */
+    background-color: #3e3e42; /* Light background color */
 }
 
 #game-board {
@@ -12,7 +12,7 @@ body {
     grid-template-columns: repeat(7, 50px); /* 7 columns */
     grid-template-rows: repeat(6, 50px); /* 6 rows */
     gap: 5px;
-    background-color: #333; /* Dark background color for the board */
+    background-color: #007acc; /* Dark background color for the board */
     padding: 10px;
     border-radius: 10px; /* Rounded corners */
 }

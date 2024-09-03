@@ -6,8 +6,7 @@ const resetButton = document.getElementById('reset-button'); // Reference to the
 
 function createBoard() {
     const gameBoard = document.getElementById('game-board');
-    // Clear the existing board cells
-    gameBoard.innerHTML = '';
+    gameBoard.innerHTML = ''; // Clear the game board
     
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < columns; col++) {
@@ -15,11 +14,12 @@ function createBoard() {
             cell.classList.add('cell');
             cell.dataset.row = row;
             cell.dataset.col = col;
+            // Attach click event to each cell
             cell.addEventListener('click', () => handleCellClick(row, col));
             gameBoard.appendChild(cell);
         }
     }
-    
+
     resetButton.style.display = 'none'; // Hide the reset button initially
 }
 

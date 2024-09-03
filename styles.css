@@ -1,5 +1,6 @@
 body {
     display: flex;
+    flex-direction: column; /* Stack the game board and button vertically */
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -14,6 +15,7 @@ body {
     gap: 5px;
     padding: 10px;
     border-radius: 10px;
+    margin-bottom: 20px; /* Add some space between the board and reset button */
 }
 
 .cell {
@@ -25,12 +27,13 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth color and scale transition */
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow for a 3D look */
 }
 
 .cell:hover {
-    background-color: #cccccc; /* Lighter gray on hover */
+    background-color: #bbbbbb; /* Slightly darker on hover */
+    transform: scale(1.1); /* Slightly scale the cell on hover */
 }
 
 .cell.red {
@@ -59,7 +62,6 @@ body {
 }
 
 #reset-button {
-    margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
     background-color: #007acc;
@@ -73,6 +75,3 @@ body {
 #reset-button:hover {
     background-color: #005a99;
 }
-
-}
-
